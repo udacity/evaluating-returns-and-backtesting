@@ -13,14 +13,14 @@ ticker = "ES=F"  # S&P 500 front-month futures ticker symbol
 sp500_data = pd.read_csv("data/sp500.csv", index_col=0)
 
 # Computing log returns
-log_returns = np.log(sp500_data).diff()
+returns = sp500_data.pct_change()
 
 # Calculating cumulative returns
-cumulative_logarithmic_return = np.exp(np.cumsum(log_returns))
+cumulative_return = (1 + returns).cumprod()
 
 # Plotting cumulative returns
 plt.figure(figsize=(10, 6))
-plt.plot(cumulative_logarithmic_return - 1, label='Cumulative Returns')
+plt.plot(cumulative_return - 1, label='Cumulative Returns')
 plt.title('S&P500 Front-Month Futures Cumulative Returns')
 plt.xlabel('Year')
 plt.ylabel('Cumulative Returns')
