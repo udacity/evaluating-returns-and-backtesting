@@ -7,10 +7,10 @@ import matplotlib.dates as mdates
 
 # Downloading S&P 500 futures data
 ticker = "ES=F"  # S&P 500 front-month futures ticker symbol
-data = yf.download(ticker)["Adj Close"]
+# data = yf.download(ticker)["Adj Close"]
 
 # Creating a pandas dataframe
-sp500_data = pd.DataFrame(data)
+sp500_data = pd.read_csv("data/sp500.csv", index_col=0)
 
 # Computing log returns
 log_returns = np.log(sp500_data).diff()
